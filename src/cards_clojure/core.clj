@@ -33,6 +33,15 @@
 (defn four-of-a-kind? [hand]
   (= 1 (count (set (map :rank hand)))))
 
+(defn three-of-a-kind? [hand]
+  (let [ranks (map :rank hand)]
+    (contains? (set (vals (frequencies ranks))) 3)))
+
+(defn two-pair? [hand]
+  (let [rank (map :rank hand)]
+    (= 2 (count (filter #(= 2 %) (vals (frequencies ranks)))))))
+
+
 (defn -main []
   (let [deck (create-deck)
         hands (create-hands deck) 
